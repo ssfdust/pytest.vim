@@ -1262,10 +1262,14 @@ function! s:Pdb(path, ...)
         let pdb_command = g:pytest_executable . " " . a:1 . " " . extra_flags . " " . a:path
     endif
 
+    if !exists("g:pytest_term_opts")
+        let g:pytest_term_opts = ""
+    endif
+
     if has('terminal')
-        exe ":term " . pdb_command
+        exe ":" . g:pytest_term_opts . "term " . pdb_command
     elseif has('nvim')
-        exe ":terminal! " . pdb_command
+        exe ":" . g:pytest_term_opts . terminal! " . pdb_command
     else
         exe ":!" . pdb_command
     endif
