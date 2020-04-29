@@ -1269,7 +1269,7 @@ function! s:Pdb(path, ...)
     if has('terminal')
         exe ":" . g:pytest_term_opts . " term " . pdb_command
     elseif has('nvim')
-        exe ":" . g:pytest_term_opts . " terminal! " . pdb_command
+        exe ":" . g:pytest_term_opts . " term://" . pdb_command
     else
         exe ":!" . pdb_command
     endif
